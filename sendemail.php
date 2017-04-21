@@ -14,13 +14,14 @@
 	<?php
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
-
-
+	$subject = "";
+	$text = "";
 
 	if (isset($_POST['submit'])) {
 		$from = 'khatan@mail.ru';
 		$subject = $_POST['subject'];
 		$text = $_POST['elvismail'];
+
 		$output_form = false;
 
 		if (!empty($subject) && !empty($text)) {
@@ -72,14 +73,13 @@
 	}
 
 
-
 	if ($output_form) {
 	?>
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>"> <!-- подставляем суперглобальную переменную $_SERVER["PHP_SELF"] в качестве ссылки сценария на самого себя -->
 		    <label for="subject">Subject of email:</label><br />
-		    <input id="subject" name="subject" type="text" size="30" /><br />
+		    <input id="subject" name="subject" type="text" size="30" value="<?php echo $subject ?>" /><br />
 		    <label for="elvismail">Body of email:</label><br />
-		    <textarea id="elvismail" name="elvismail" rows="8" cols="40"></textarea><br />
+		    <textarea id="elvismail" name="elvismail" rows="8" cols="40"><?php echo $text ?></textarea><br />
 		    <input type="submit" name="submit" value="Submit" />
   		</form>
 
